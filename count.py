@@ -5,7 +5,7 @@ import settings
 
 
 ###--- FUNCTIONS ---###
-def count_files():
+def count_directories():
     '''
     - Establishes a path inside a variable, 
     - Creates a list containing the names of the entries 
@@ -14,14 +14,17 @@ def count_files():
     '''
     path = settings.DIR_PATH
 
-    file_list = os.listdir(path)
-    print(file_list)
+    directory_list = os.listdir(path)
+    print(directory_list)
     # for this project: ['__pycache__', '.gitignore', 'settings.py', 'count.py']
 
-    number_of_files = len(file_list)
-    print(number_of_files)  # for this project: 4
+    number_of_directories = len(directory_list)
+    print(number_of_directories)  # for this project: 4
 
 
 ###--- DRIVER CODE ---###
 if __name__ == "__main__":
-    count_files()
+    count_directories()
+
+
+# TO DO: pierce into directoris and count actual files
