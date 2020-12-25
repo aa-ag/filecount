@@ -1,5 +1,5 @@
 ###--- IMPORTS ---###
-import os  # https://docs.python.org/3/library/os.html
+import os  # https://docs.python.org/3/library/os.html#os.listdir
 # [!] alternatively: glob https://docs.python.org/3/library/glob.html
 import settings
 
