@@ -6,20 +6,19 @@ import settings
 
 ###--- FUNCTIONS ---###
 def count_directories():
-    '''
-    - Establishes a path inside a variable, 
-    - Creates a list containing the names of the entries 
-    in the directory given by path, inside a variable.
-    - Prints lenght of that list (number of files in directory)  
-    '''
+    # Use of scandir() to display all the files (excluding directories)
+    # in the given path that don’t start with '.';
+    # the entry.is_file() call will generally not make an additional system call
     path = settings.DIR_PATH
 
-    directory_list = os.listdir(path)
-    print(directory_list)
-    # for this project: ['__pycache__', '.gitignore', 'settings.py', 'count.py']
+    files_list = list()
 
-    number_of_directories = len(directory_list)
-    print(number_of_directories)  # for this project: 4
+    with os.scandir(path) as it:
+        for entry in it:
+            if not entry.name.startswith('.') and entry.is_file():
+                files_list.append(entry)
+
+    print(len(files_list))
 
 
 ###--- DRIVER CODE ---###
