@@ -2,6 +2,7 @@
 import os  # https://docs.python.org/3/library/os.html#os.listdir
 # [!] alternatively: glob https://docs.python.org/3/library/glob.html
 import settings
+import time
 
 
 ###--- FUNCTIONS ---###
@@ -13,6 +14,11 @@ def count_directories():
 
     directories_list = os.listdir(path_to_dirs)
     print(len(directories_list))
+
+    for directory in directories_list:
+        print("directory name", 'last_modified')
+        print(directory, time.ctime(
+            os.path.getmtime(path_to_dirs + '/' + directory)))
 
 
 ###--- DRIVER CODE ---###
