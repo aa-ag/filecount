@@ -3,6 +3,7 @@ import os  # https://docs.python.org/3/library/os.html#os.listdir
 # [!] alternatively: glob https://docs.python.org/3/library/glob.html
 import settings
 import time
+import pandas as pd
 
 
 ###--- FUNCTIONS ---###
@@ -12,13 +13,17 @@ def count_directories():
     # the entry.is_file() call will generally not make an additional system call
     path_to_dirs = settings.DIR_PATH
 
-    directories_list = os.listdir(path_to_dirs)
-    print(len(directories_list))
+    directories_names_list = os.listdir(path_to_dirs)
+    # print(len(directories_list)) # 81
 
-    for directory in directories_list:
-        print("directory name", 'last_modified')
-        print(directory, time.ctime(
-            os.path.getmtime(path_to_dirs + '/' + directory)))
+    directories = list()
+
+    for directory in directories_names_list:
+        directories.append([directory, time.ctime(
+            os.path.getmtime(path_to_dirs + '/' + directory))])
+
+    df = pd.DataFrame(directories, columns=['Directory Name', 'Last Modified'])
+    print(df)
 
 
 ###--- DRIVER CODE ---###
